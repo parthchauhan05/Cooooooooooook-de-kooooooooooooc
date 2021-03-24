@@ -62,4 +62,4 @@ def add_recipe(request):
         return redirect("index")
     else:
         pass
-    return render(request,'registration/register.html')
+    return render(request,'recipe/add_recipe.html')
