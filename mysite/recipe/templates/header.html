@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v5.2.0, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="{% static 'assets/images/turkey.jpg' %}" type="image/x-icon">
+  <meta name="description" content="">
+
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'assets/web/assets/mobirise-icons2/mobirise2.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/tether/tether.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
+  <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css"> 
+  
+</head>
+<body>
+  <section class="menu cid-s48OLK6784" once="menu" id="menu1-h">
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+        <div class="container">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'assets/images/turkey.jpg' %}" alt="CookMore" style="height: 90px;">
+                    </a>
+                </span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption display-1" href="{% url 'index' %}"><img src="{% static 'assets/images/CookMore.png' %}" style="max-height: 80px; max-width: 200px;" alt="CookMore"></a></span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">   
+                {% if request.user.is_authenticated %}
+                <div class="navbar-buttons"><span class = "mbr-section-subtitle align-center mbr-fonts-style mb-4 display-7">Welcome, {{ request.user.first_name }}</span><a class="btn btn-primary display-4" href="{% url 'log-out' %}">Log Out</a></div>
+                {% else %}
+                    <div class="navbar-buttons"><a class="btn btn-primary display-4" href="{% url 'log-in' %}">Log In</a> <a class="btn btn-primary-outline display-4" href="{% url 'sign-up' %}">Sign Up</a></div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</section></br>
