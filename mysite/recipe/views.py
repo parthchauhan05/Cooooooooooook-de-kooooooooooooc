@@ -102,3 +102,13 @@ def recipe_details(request, recipe_id):
     ingredients = recipe.recipe_ingredient.all()
     context = { 'recipe' : recipe, 'ingredients' : ingredients }
     return render(request, "recipe/recipe_details.html", context=context)
+
+
+@login_required
+def add_ingredient(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        ing = Ingredient(ingredient_name=name)
+        ing.save()
+        return redirect('index')
+    return render(request, 'recipe/add_ingredient.html')

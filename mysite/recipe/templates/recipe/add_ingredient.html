@@ -1,0 +1,31 @@
+{% load static %}
+{% include 'header.html' %}
+
+<section class="form7 cid-sot7C68He7" id="form7-w">
+    
+    <div class="mbr-overlay"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Add a new Ingredient</strong></h3>     
+        </div>
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-10 mx-auto mbr-form" data-form-type="formoid">
+                <form action="#" method="POST" class="mbr-form form-with-styler mx-auto" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="SjyxVqRlHqFdX6r8/zSZKFwYgHGaYbg6SlPJBcRb81ZyL0trcXn5uk8ppIl8wb6srQ3PTT4uufHebLxsz4iWDtgi0b2vvsFpDlyeRbLJqcxdGDSYdkMi/YMSyzbnSv6P">
+                    {% csrf_token %}
+                    <div class="dragArea row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="name">
+                            <label for="name" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Ingredient Name</label>
+                            <input type="text" name="name" placeholder="..." data-form-field="name" class="form-control" value="" id="name-form7-w">
+                        </div>
+                        <div class="col-auto mbr-section-btn align-center">
+                            <button type="submit" class="btn btn-primary display-4">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
