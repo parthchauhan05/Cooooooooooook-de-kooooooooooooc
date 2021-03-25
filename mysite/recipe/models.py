@@ -11,7 +11,7 @@ class Recipe(models.Model):
     recipe_cook_time = models.DurationField()
     recipe_servings = models.IntegerField()
     recipe_ingredient = models.ManyToManyField('Ingredient')
-    recipe_favourites = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    recipe_favourites = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
     recipe_chef = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='creater')
     
     def __str__(self):

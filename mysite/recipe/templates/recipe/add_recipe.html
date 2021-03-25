@@ -7,34 +7,57 @@
     <div class="container">
         <div class="mbr-section-head">
             <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Add a new Recipe</strong></h3>
-            
+                <strong>Add a new Recipe</strong></h3>     
         </div>
+        
         <div class="row justify-content-center mt-4">
-            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+            <div class="col-md-10 mx-auto mbr-form" data-form-type="formoid">
                 <form action="#" method="POST" class="mbr-form form-with-styler mx-auto" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="SjyxVqRlHqFdX6r8/zSZKFwYgHGaYbg6SlPJBcRb81ZyL0trcXn5uk8ppIl8wb6srQ3PTT4uufHebLxsz4iWDtgi0b2vvsFpDlyeRbLJqcxdGDSYdkMi/YMSyzbnSv6P">
                     {% csrf_token %}
-                    <!-- <p class="mbr-text mbr-fonts-style align-center mb-4 display-7">
-                        One of our team will be in contact with you shortly.
-                    </p> -->
-                    <!-- <div class="">
-                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for signing up!</div>
-                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some
-                            problem!</div>
-                    </div> -->
                     <div class="dragArea row">
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="name">
-                            <input type="text" name="fname" placeholder="First name" data-form-field="fname" class="form-control" value="" id="name-form7-w">
+                            <label for="name" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Recipe Name</label>
+                            <input type="text" name="name" placeholder="..." data-form-field="name" class="form-control" value="" id="name-form7-w">
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="name">
-                            <input type="text" name="lname" placeholder="Last name" data-form-field="lname" class="form-control" value="" id="name-form7-w">
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="steps">
+                            <label for="steps" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Recipe Steps (Please enter each step in new line)</label>
+                            <textarea type="text" name="steps" placeholder="..." data-form-field="steps" class="form-control" value="" id="name-form7-w"></textarea>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="email">
-                            <input type="email" name="email" placeholder="Email" data-form-field="email" class="form-control" value="" id="email-form7-w">
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="servings">
+                            <label for="servings" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Servings</label>
+                            <input type="number" name="servings" placeholder="1" data-form-field="servings" class="form-control" value="" id="email-form7-w">
                         </div>
-                        <div data-for="password" class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <input type="password" name="password" placeholder="Password" data-form-field="password" class="form-control" value="" id="password-form7-w">
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="prep-time">
+                            <label for="prep-time-hour" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Preparation Time</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" name="prep-time-hour" placeholder="HH" data-form-field="prep-time-hour" class="form-control" value="" id="email-form7-w">
+                                </div>
+                                <div class="col">
+                                    <input type="number" name="prep-time-min" placeholder="MM" data-form-field="prep-time-min" class="form-control" value="" id="email-form7-w">
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="cook-time">
+                            <label for="cook-time-hour" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Cook Time</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" name="cook-time-hour" placeholder="HH" data-form-field="cook-time-hour" class="form-control" value="" id="email-form7-w">
+                                </div>
+                                <div class="col">
+                                    <input type="number" name="cook-time-min" placeholder="MM" data-form-field="cook-time-min" class="form-control" value="" id="email-form7-w">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="servings">
+                            <label for="ingredients" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Ingredients (Press Control/Command to select multiple)</label>
+                            <select name="ingredients" id="ingredients" multiple="multiple" class="form-control" data-for="ingredients">
+                                {% for ingredient in ingredients %}
+                                    <option value="{{ ingredient.id }}"> {{ ingredient.ingredient_name }} </option>
+                                {% endfor %}
+                            </select>  
+                        </div>
+                        
                         <!-- <div data-for="cPass" class="col-lg-12 col-md-12 col-sm-12 form-group">
                             <input type="password" name="cPass" placeholder="Password" data-form-field="cPass" class="form-control" value="" id="password-form7-w">
                         </div> -->

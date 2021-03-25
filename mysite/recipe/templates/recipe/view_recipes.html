@@ -1,0 +1,36 @@
+{% load static %}
+{% include 'header.html' %}
+
+<section class=" cid-sot7C68He7" id="form7-w">
+    
+    <div class="mbr-overlay"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Recipes</strong></h3>     
+        </div>
+        
+        <div class="row justify-content-center mt-4">
+            <ul class="col-sm-10" style="list-style-type:none;">
+                {% for recipe in recipes %}
+                    <li class="my-3">
+                        <div class="card">
+                            <div class="card-body row d-flex align-items-center" style="
+                            background-color: #fff;
+                            background-clip: border-box;
+                            border-radius: .25rem;
+                            box-shadow: 10px 10px 26px 0px rgba(0,0,0,0.29);
+                        ">
+                                <p class="mbr-section-title mbr-fonts-style mb-0 display-7 col">
+                                    {{recipe}}
+                                </p>   
+                                <a href="{% url 'recipe-details' recipe.id %}" class="col-sm-2 mbr-fonts-style mb-0 display-7 btn btn-primary">View</a> 
+                            </div>
+                        </div>                            
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}

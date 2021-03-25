@@ -1,0 +1,46 @@
+{% load static %}
+{% include 'header.html' %}
+
+<section class=" cid-sot7C68He7" id="form7-w">
+    
+    <div class="mbr-overlay"></div>
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>{{recipe}}</strong></h3>     
+        </div>
+        
+        <div class="row justify-content-center mt-4">
+            <ol class="col">
+                <h4>Steps:</h4>
+                {% for step in recipe.recipe_steps %}
+                <li class="my-3">
+                    <p class="mbr-section-title mbr-fonts-style mb-0 display-7">{{step}}</p>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <h4>Servings:</h4>
+        <p class="mbr-section-title mbr-fonts-style mb-0 display-7">{{recipe.recipe_servings}}</p>
+        <hr>
+        <h4>Chef:</h4>
+        <p class="mbr-section-title mbr-fonts-style mb-0 display-7">{{recipe.recipe_chef}}</p>
+        <hr>
+        <h4>Preparation Time:</h4>
+        <p class="mbr-section-title mbr-fonts-style mb-0 display-7">{{recipe.recipe_prep_time}}</p>
+        <hr>
+        <h4>Cook Time:</h4>
+        <p class="mbr-section-title mbr-fonts-style mb-0 display-7">{{recipe.recipe_cook_time}}</p>
+        <div class="row justify-content-center mt-4">
+            <ol class="col">
+                <h4>Ingredients:</h4>
+                {% for ing in ingredients %}
+                <li class="my-3">
+                    <p class="mbr-section-title mbr-fonts-style mb-0 display-7">{{ing}}</p>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
