@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .models import Ingredient, Recipe
 import datetime
+from mysite import settings
 
 # Create your views here.
 def index(request):
@@ -21,11 +22,18 @@ def sign_up(request):
         lname = request.POST.get("lname")
         email = request.POST.get("email")
         password = request.POST.get("password")
-        user = User.objects.create_user(username=email, email=email, password=password, first_name=fname, last_name=lname)
-        login(request, authenticate(request, username=email, password=password))
-        return redirect("index")
+        cpassword = request.POST.get("cpassword")
+        if password == cpassword and User.object.get(email=email) :
+            user = User.objects.create_user(username=email, email=email, password=password, first_name=fname, last_name=lname)
+            login(request, authenticate(request, username=email, password=password))
+            return redirect("index")
+        else:
+            context = {
+                'html': 'User already exists'}
+            return render(request, 'registration/register.html', context=context)
     else:
         pass
+
     return render(request,'registration/register.html')
     
 
@@ -34,14 +42,14 @@ def log_in(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
         user = authenticate(request, username=email, password=password)
-        if user is not None:
+        if user is not None:            
             if user.is_active:
                 login(request, user)
                 return redirect("index")
             else: 
                 pass
         else: 
-            print(user, email, password)
+            print(user, password)
             return render(request,'registration/login.html')
     else:
         pass
@@ -56,15 +64,19 @@ def log_out(request):
 @login_required
 def add_recipe(request):
     if request.method == "POST":
+        # form = UploadFileForm(request.POST, request.FILES)
         name = request.POST.get("name")
         steps = request.POST.getlist("steps")
         servings = request.POST.get("servings")
-        prep_hour = int(request.POST.get("prep-time-hour"))
+        image = request.FILES['recipie_image']
+        prep_hour = request.POST.get("prep-time-hour")
         prep_min = int(request.POST.get("prep-time-min"))
         cook_hour = int(request.POST.get("cook-time-hour"))
         cook_min = int(request.POST.get("cook-time-min"))
         ingredients = list(request.POST.getlist("ingredients"))
         user = request.user
+        handle_uploaded_file(image)
+
 
         prep_time = datetime.timedelta(hours=prep_hour, minutes=prep_min)
         cook_time = datetime.timedelta(hours=cook_hour, minutes=cook_min)
@@ -74,7 +86,8 @@ def add_recipe(request):
             recipe_chef=user,
             recipe_servings=servings,
             recipe_prep_time=prep_time,
-            recipe_cook_time=cook_time
+            recipe_cook_time=cook_time,
+            recipe_image=image
         )
         r = recipe.save()
         for ingredient in ingredients:
@@ -87,7 +100,6 @@ def add_recipe(request):
         'ingredients': Ingredients
     }
     return render(request,'recipe/add_recipe.html', context=context)
-
 
 def view_recipes(request):
     recipes = Recipe.objects.all()
@@ -112,3 +124,8 @@ def add_ingredient(request):
         ing.save()
         return redirect('index')
     return render(request, 'recipe/add_ingredient.html')
+
+def handle_uploaded_file(f):
+    with open(settings.MEDIA_URL+f, 'wb+') as file:
+        for chunk in f.chunks():
+            file.write(chunk)
