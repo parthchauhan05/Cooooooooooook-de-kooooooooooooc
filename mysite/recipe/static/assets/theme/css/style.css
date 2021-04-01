@@ -64,7 +64,6 @@ h6,
 .display-4,
 .display-5,
 .display-7,
-span,
 p,
 a {
   line-height: 1;
@@ -256,7 +255,9 @@ iframe {
   max-width: 100%;
   margin: 0 auto;
 }
-
+span.error{
+  color: red;
+}
 .mbr-figure {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;

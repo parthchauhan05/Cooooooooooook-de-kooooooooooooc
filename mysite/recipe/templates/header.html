@@ -45,9 +45,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">   
                 {% if request.user.is_authenticated %}
-                <div class="navbar-buttons"><span class = "mbr-section-subtitle align-center mbr-fonts-style mb-4 display-7">Welcome, {{ request.user.first_name }}</span>
+                <div class="navbar-buttons"><span class = "mbr-section-subtitle align-center mbr-fonts-style mb-4 display-7">Welcome, {{  request.user.first_name  }}</span>
                     <a class="btn btn-primary display-4" href="{% url 'view-recipes' %}">View Recipe</a>
-                    <a class="btn btn-primary display-4" href="{% url 'add-recipe' %}">Add Recipe</a><a class="btn btn-primary display-4" href="{% url 'log-out' %}">Log Out</a></div>
+                    <a class="btn btn-primary display-4" href="{% url 'add-recipe' %}">Add Recipe</a>
+                    <a class="btn btn-primary display-4" href="{% url 'log-out' %}">Log Out</a></div>
                 {% else %}
                     <div class="navbar-buttons"><a class="btn btn-primary display-4" href="{% url 'log-in' %}">Log In</a> <a class="btn btn-primary-outline display-4" href="{% url 'sign-up' %}">Sign Up</a>
                         <a class="btn btn-primary display-4" href="{% url 'view-recipes' %}">View Recipe</a>

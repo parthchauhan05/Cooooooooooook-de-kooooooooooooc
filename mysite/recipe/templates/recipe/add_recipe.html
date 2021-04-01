@@ -17,24 +17,28 @@
                     <div class="dragArea row">
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="name">
                             <label for="name" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Recipe Name</label>
-                            <input type="text" name="name" placeholder="..." data-form-field="name" class="form-control" value="" id="name-form7-w">
+                            <input type="text" name="name" placeholder="..." data-form-field="name" class="form-control" value="" id="name-form7-w" required>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="image">
+                            <label for="image" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Image</label>
+                            <input type="file" name="image" placeholder="..." data-form-field="image" class="form-control" value="" id="image-form1-w" required>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="steps">
                             <label for="steps" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Recipe Steps (Please enter each step in new line)</label>
-                            <textarea type="text" name="steps" placeholder="..." data-form-field="steps" class="form-control" value="" id="name-form7-w"></textarea>
+                            <textarea type="text" name="steps" placeholder="..." data-form-field="steps" class="form-control" value="" id="name-form7-w" required></textarea>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="servings">
                             <label for="servings" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Servings</label>
-                            <input type="number" name="servings" placeholder="1" data-form-field="servings" class="form-control" value="" id="email-form7-w">
+                            <input type="number" name="servings" placeholder="1" data-form-field="servings" class="form-control" default="1" value="" id="email-form7-w">
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="prep-time">
                             <label for="prep-time-hour" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Preparation Time</label>
                             <div class="row">
                                 <div class="col">
-                                    <input type="number" name="prep-time-hour" placeholder="HH" data-form-field="prep-time-hour" class="form-control" value="" id="email-form7-w">
+                                    <input type="number" name="prep-time-hour" placeholder="HH" data-form-field="prep-time-hour"  class="form-control" value="1" id="email-form7-w">
                                 </div>
                                 <div class="col">
-                                    <input type="number" name="prep-time-min" placeholder="MM" data-form-field="prep-time-min" class="form-control" value="" id="email-form7-w">
+                                    <input type="number" name="prep-time-min" placeholder="MM" data-form-field="prep-time-min" default="1" class="form-control" value="" id="email-form7-w">
                                 </div>
                             </div>
                         </div>
@@ -42,10 +46,10 @@
                             <label for="cook-time-hour" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Cook Time</label>
                             <div class="row">
                                 <div class="col">
-                                    <input type="number" name="cook-time-hour" placeholder="HH" data-form-field="cook-time-hour" class="form-control" value="" id="email-form7-w">
+                                    <input type="number" name="cook-time-hour" placeholder="HH" data-form-field="cook-time-hour" default="0" class="form-control" value="" id="email-form7-w">
                                 </div>
                                 <div class="col">
-                                    <input type="number" name="cook-time-min" placeholder="MM" data-form-field="cook-time-min" class="form-control" value="" id="email-form7-w">
+                                    <input type="number" name="cook-time-min" placeholder="MM" data-form-field="cook-time-min" default="1" class="form-control" value="" id="email-form7-w">
                                 </div>
                             </div>
                         </div>
