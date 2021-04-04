@@ -1,3 +1,5 @@
+from mysite import settings
+from django import forms
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -7,8 +9,6 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .models import Ingredient, Recipe
 import datetime
-from mysite import settings
-
 # Create your views here.
 def index(request):
     template = loader.get_template('index.html')
@@ -65,19 +65,20 @@ def log_out(request):
 def add_recipe(request):
     if request.method == "POST":
         # form = UploadFileForm(request.POST, request.FILES)
+        
         name = request.POST.get("name")
         steps = request.POST.getlist("steps")
         servings = request.POST.get("servings")
-        image = request.FILES['recipie_image']
-        prep_hour = request.POST.get("prep-time-hour")
+        # return
+        image = request.FILES['image']
+        
+        prep_hour = int(request.POST.get("prep-time-hour"))
         prep_min = int(request.POST.get("prep-time-min"))
         cook_hour = int(request.POST.get("cook-time-hour"))
         cook_min = int(request.POST.get("cook-time-min"))
         ingredients = list(request.POST.getlist("ingredients"))
+        image = request.FILES["image"]
         user = request.user
-        handle_uploaded_file(image)
-
-
         prep_time = datetime.timedelta(hours=prep_hour, minutes=prep_min)
         cook_time = datetime.timedelta(hours=cook_hour, minutes=cook_min)
         recipe = Recipe(
@@ -100,6 +101,11 @@ def add_recipe(request):
         'ingredients': Ingredients
     }
     return render(request,'recipe/add_recipe.html', context=context)
+
+def handle_uploaded_file(f):
+    with open('/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 def view_recipes(request):
     recipes = Recipe.objects.all()
@@ -126,6 +132,7 @@ def add_ingredient(request):
     return render(request, 'recipe/add_ingredient.html')
 
 def handle_uploaded_file(f):
+    print(f)
     with open(settings.MEDIA_URL+f, 'wb+') as file:
         for chunk in f.chunks():
             file.write(chunk)
