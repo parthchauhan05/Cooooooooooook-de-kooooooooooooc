@@ -11,9 +11,12 @@ from .models import Ingredient, Recipe
 import datetime
 # Create your views here.
 def index(request):
+    Recipes = Recipe.objects.all()[:3]
+    # print(Recipes[0].recipe_steps)
     template = loader.get_template('index.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    context = {'recipes' : Recipes}
+    return render(request, 'index.html', context=context)
+    # return HttpResponse(template.render(context, request), context=context)
 
 
 def sign_up(request):
@@ -94,18 +97,16 @@ def add_recipe(request):
         for ingredient in ingredients:
             ing = Ingredient.objects.get(id = ingredient)
             recipe.recipe_ingredient.add(ing)
+
     elif request.method == "GET":
         pass
     Ingredients = Ingredient.objects.all()
     context = {
-        'ingredients': Ingredients
+        'ingredients': Ingredients,
+        'next' : next
     }
     return render(request,'recipe/add_recipe.html', context=context)
 
-def handle_uploaded_file(f):
-    with open('/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
 
 def view_recipes(request):
     recipes = Recipe.objects.all()
@@ -123,16 +124,10 @@ def recipe_details(request, recipe_id):
 
 
 @login_required
-def add_ingredient(request):
+def add_ingredient(request):    
     if request.method == 'POST':
         name = request.POST.get("name")
         ing = Ingredient(ingredient_name=name)
         ing.save()
-        return redirect('index')
+        return redirect('add-recipe')
     return render(request, 'recipe/add_ingredient.html')
-
-def handle_uploaded_file(f):
-    print(f)
-    with open(settings.MEDIA_URL+f, 'wb+') as file:
-        for chunk in f.chunks():
-            file.write(chunk)

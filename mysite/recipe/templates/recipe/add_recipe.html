@@ -16,6 +16,7 @@
                     <!-- <input type="hidden" name="email" data-form-email="true" value="SjyxVqRlHqFdX6r8/zSZKFwYgHGaYbg6SlPJBcRb81ZyL0trcXn5uk8ppIl8wb6srQ3PTT4uufHebLxsz4iWDtgi0b2vvsFpDlyeRbLJqcxdGDSYdkMi/YMSyzbnSv6P"> -->
                     {% csrf_token %}
                     <div class="dragArea row">
+                        <input type="hidden" name="next" value="{{ request.path }}">
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="name">
                             <label for="name" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Recipe Name</label>
                             <input type="text" name="name" placeholder="..." data-form-field="name" class="form-control" value="" id="name-form7-w" required>
