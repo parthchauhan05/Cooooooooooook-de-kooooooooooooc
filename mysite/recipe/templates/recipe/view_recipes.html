@@ -1,36 +1,52 @@
+
 {% load static %}
 {% include 'header.html' %}
-
-<section class=" cid-sot7C68He7" id="form7-w">
-    
-    <div class="mbr-overlay"></div>
+<section class="features10 cid-sotbW4qMBf" id="features11-12">   
     <div class="container">
-        <div class="mbr-section-head">
-            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Recipes</strong></h3>     
+        <div class="title">
+            <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                <strong>Recipes List</strong>
+            </h3>
+            
         </div>
-        
-        <div class="row justify-content-center mt-4">
-            <ul class="col-sm-10" style="list-style-type:none;">
-                {% for recipe in recipes %}
-                    <li class="my-3">
-                        <div class="card">
-                            <div class="card-body row d-flex align-items-center" style="
-                            background-color: #fff;
-                            background-clip: border-box;
-                            border-radius: .25rem;
-                            box-shadow: 10px 10px 26px 0px rgba(0,0,0,0.29);
-                        ">
-                                <p class="mbr-section-title mbr-fonts-style mb-0 display-7 col">
-                                    {{recipe}}
-                                </p>   
-                                <a href="{% url 'recipe-details' recipe.id %}" class="col-sm-2 mbr-fonts-style mb-0 display-7 btn btn-primary">View</a> 
+        {% for recipe in recipes %}
+        <div class="card">
+            <a href="{% url 'recipe-details' recipe.id %}" >
+            <div class="card-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-3">
+                        <div class="image-wrapper">
+                            <img src="/media/{{ recipe.recipe_image }}" alt="CookMore" title="">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md">                        
+                        <div class="card-box">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="top-line">
+                                        <h4 class="card-title mbr-fonts-style display-5"><strong>{{ recipe.recipe_name }}</strong></h4>
+                                        <p class="cost mbr-fonts-style display-5">
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bottom-line">
+                                        <p class="mbr-text mbr-fonts-style m-0 display-7">
+                                            -------------------------------------------------------------------------------------------
+                                            -------------------------------------------------------------------------------------------
+                                            -------------------------------------------------------------------------------------------
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>                            
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>    
+        {% endfor %}
     </div>
 </section>
+
 {% include 'footer.html' %}

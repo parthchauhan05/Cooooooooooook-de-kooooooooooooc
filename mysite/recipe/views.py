@@ -10,13 +10,12 @@ from django.contrib.auth.decorators import login_required
 from .models import Ingredient, Recipe
 import datetime
 # Create your views here.
+
 def index(request):
     Recipes = Recipe.objects.all()[:3]
-    # print(Recipes[0].recipe_steps)
     template = loader.get_template('index.html')
     context = {'recipes' : Recipes}
     return render(request, 'index.html', context=context)
-    # return HttpResponse(template.render(context, request), context=context)
 
 
 def sign_up(request):
@@ -66,15 +65,11 @@ def log_out(request):
 
 @login_required
 def add_recipe(request):
-    if request.method == "POST":
-        # form = UploadFileForm(request.POST, request.FILES)
-        
+    if request.method == "POST":        
         name = request.POST.get("name")
         steps = request.POST.getlist("steps")
         servings = request.POST.get("servings")
-        # return
         image = request.FILES['image']
-        
         prep_hour = int(request.POST.get("prep-time-hour"))
         prep_min = int(request.POST.get("prep-time-min"))
         cook_hour = int(request.POST.get("cook-time-hour"))
