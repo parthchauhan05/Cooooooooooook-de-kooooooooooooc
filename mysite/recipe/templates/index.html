@@ -13,8 +13,12 @@
                     <!-- <p>{{ recipe }}</p> -->
                     <div class="carousel-inner">               
                         {% for recipe in recipes %}          
-                        <div class="carousel-item slider-image item active">                            
-                            <div class="item-wrapper">                                                               
+                            {% if forloop.first %}
+                            <div class="carousel-item slider-image item active">                            
+                            {%  else %}
+                            <div class="carousel-item slider-image item">                            
+                            {% endif %}
+                                <div class="item-wrapper">                                                               
                                 <img class="d-block w-100" src="/media/{{ recipe.recipe_image }}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5 class="mbr-section-subtitle mbr-fonts-style display-5">
