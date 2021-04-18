@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
   <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}">
   <link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css"> 
+  <link rel="stylesheet" href="{% static 'assests/mobirise/style.css' %}" type="text/css">
   
 </head>
 <body>
@@ -44,17 +45,57 @@
                 </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">   
-                {% if request.user.is_authenticated %}
-                <div class="navbar-buttons"><span class = "mbr-section-subtitle align-center mbr-fonts-style mb-4 display-7">Welcome, {{  request.user.first_name  }}</span>
-                    <a class="btn btn-primary display-4" href="{% url 'view-recipes' %}">View Recipe</a>
-                    <a class="btn btn-primary display-4" href="{% url 'add-recipe' %}">Add Recipe</a>
-                    <a class="btn btn-primary display-4" href="{% url 'log-out' %}">Log Out</a></div>
-                {% else %}
-                    <div class="navbar-buttons"><a class="btn btn-primary display-4" href="{% url 'log-in' %}">Log In</a> <a class="btn btn-primary-outline display-4" href="{% url 'sign-up' %}">Sign Up</a>
-                        <a class="btn btn-primary display-4" href="{% url 'view-recipes' %}">View Recipe</a>
-                    </div>
-                {% endif %}
-            </div>
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a hre="{% url 'profile' %}" class="nav-link link display-4">Welcome, {{  request.user.first_name  }}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu" aria-expanded="false">
+                                Categories
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="text-primary dropdown-item display-4" name="Indian" href="{% url 'category' 'Indian' %}">
+                                    Indian
+                                </a>
+                                <a class="text-primary dropdown-item display-4" name="Canadian" href="{% url 'category' 'Canadian' %}" aria-expanded="true">
+                                    Canadian
+                                </a>
+                            </div>                        
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link display-4" href="{% url 'view-recipes' %}">View Recipe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link display-4" href="{% url 'log-out' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu" aria-expanded="false">
+                                Categories
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="text-primary dropdown-item display-4" name="Indian" href="{% url 'category' 'Indian' %}">
+                                    Indian
+                                </a>
+                                <a class="text-primary dropdown-item display-4" name="Canadian" href="{% url 'category' 'Canadian' %}" aria-expanded="true">
+                                    Canadian
+                                </a>
+                            </div>                        
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link display-4" href="{% url 'view-recipes' %}">View Recipes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link display-4" href="{% url 'log-in' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link display-4" href="{% url 'sign-up' %}">Sign Up</a>
+                        </li>                        
+                        
+                    {% endif %}
+                </ul>
         </div>
     </nav>
+    
 </section></br>

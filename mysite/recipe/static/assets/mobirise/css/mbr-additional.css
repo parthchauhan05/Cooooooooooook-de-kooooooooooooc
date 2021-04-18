@@ -3192,3 +3192,8 @@ a {
   color: #22a5e5;
   text-align: right;
 }
+#fixedBtn{
+  position: fixed;
+  right: 0%;
+  bottom: 0%;
+}

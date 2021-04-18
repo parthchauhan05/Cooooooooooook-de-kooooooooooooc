@@ -1,0 +1,20 @@
+{% load static %}
+{% include 'header.html' %}
+<section class="features10 cid-sotbW4qMBf" id="features11-12">   
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <img src="#" class="d-block w-150 h-150" aslt="Profile Picture" />
+            </div>
+            <div class="col-9">
+                <div class="title">
+                    {{ request.user.first_name request.user.last_name}}
+                </div>
+                <div class="info">
+                    {{ request.user.email }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}

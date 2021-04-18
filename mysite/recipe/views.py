@@ -13,8 +13,9 @@ import datetime
 
 def index(request):
     Recipes = Recipe.objects.all()[:3]
+    RecipeAll = Recipe.objects.all()[3:8]
     template = loader.get_template('index.html')
-    context = {'recipes' : Recipes}
+    context = {'recipes' : Recipes, 'RecipeAll': RecipeAll}
     return render(request, 'index.html', context=context)
 
 
@@ -25,7 +26,7 @@ def sign_up(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
         cpassword = request.POST.get("cpassword")
-        if password == cpassword and User.object.get(email=email) :
+        if password == cpassword :
             user = User.objects.create_user(username=email, email=email, password=password, first_name=fname, last_name=lname)
             login(request, authenticate(request, username=email, password=password))
             return redirect("index")
@@ -86,7 +87,8 @@ def add_recipe(request):
             recipe_servings=servings,
             recipe_prep_time=prep_time,
             recipe_cook_time=cook_time,
-            recipe_image=image
+            recipe_image=image,
+            category="Indian"
         )
         r = recipe.save()
         for ingredient in ingredients:
@@ -104,9 +106,16 @@ def add_recipe(request):
 
 
 def view_recipes(request):
+    print(request)
     recipes = Recipe.objects.all()
     context = { 'recipes' : recipes }
     return render(request, "recipe/view_recipes.html", context=context)
+
+def category(request, refName):
+    print(refName)
+    recipes = Recipe.objects.filter(category=refName)
+    context = { 'recipes' : recipes, 'refName': refName }
+    return render(request, "recipe/category.html", context=context)
 
 
 def recipe_details(request, recipe_id):
@@ -126,3 +135,7 @@ def add_ingredient(request):
         ing.save()
         return redirect('add-recipe')
     return render(request, 'recipe/add_ingredient.html')
+
+def profile(request):
+    print("abc")
+    return render(request, 'profile.html')
