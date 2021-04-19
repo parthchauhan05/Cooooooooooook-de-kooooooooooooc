@@ -33,6 +33,17 @@
                             <label for="servings" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Servings</label>
                             <input type="number" name="servings" placeholder="1" data-form-field="servings" class="form-control" default="1" value="" id="email-form7-w">
                         </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="servings">
+                            <label for="category" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Cuisine</label>
+                            <select class="nav-link link dropdown-toggle display-4" id="category" name="category">
+                                <option class="text-primary dropdown-item display-4" value="Indian">Indian</option>
+                                <option class="text-primary dropdown-item display-4" value="Canadian">Canadian</option>
+                                <option class="text-primary dropdown-item display-4" value="Mexican">Mexican</option>
+                                <option class="text-primary dropdown-item display-4" value="Finnish">Finnish</option>
+                                <option class="text-primary dropdown-item display-4" value="Italian">Italian</option>
+                                <option class="text-primary dropdown-item display-4" value="Chinese">Chinese</option>
+                              </select>
+                        </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="prep-time">
                             <label for="prep-time-hour" style="font-family: 'Jost', sans-serif; font-size: 1.1rem;">Preparation Time</label>
                             <div class="row">
@@ -62,7 +73,7 @@
                                     <option value="{{ ingredient.id }}"> {{ ingredient.ingredient_name }} </option>
                                 {% endfor %}
                             </select>  
-                            <center><a href="{% url 'add-ingredient' %}" class="display-7">Add a new Ingredient</a></center>
+                            <a href="{% url 'add-ingredient' %}" class="display-7">Add a new Ingredient</a>
                         </div>
                         
                         <!-- <div data-for="cPass" class="col-lg-12 col-md-12 col-sm-12 form-group">

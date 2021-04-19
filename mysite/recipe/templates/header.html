@@ -48,19 +48,29 @@
                 <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a hre="{% url 'profile' %}" class="nav-link link display-4">Welcome, {{  request.user.first_name  }}</a>
+                            <a href="{% url 'profile' request.user.id %}" class="nav-link link display-4">Welcome, {{  request.user.first_name  }}</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link link dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu" aria-expanded="false">
                                 Categories
                             </a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu">                                
                                 <a class="text-primary dropdown-item display-4" name="Indian" href="{% url 'category' 'Indian' %}">
                                     Indian
                                 </a>
-                                <a class="text-primary dropdown-item display-4" name="Canadian" href="{% url 'category' 'Canadian' %}" aria-expanded="true">
+                                <a class="text-primary dropdown-item display-4" name="Canadian" href="{% url 'category' 'Canadian' %}">
                                     Canadian
                                 </a>
+                                <a class="text-primary dropdown-item display-4" name="Mexican" href="{% url 'category' 'Mexican' %}">
+                                    Mexican
+                                </a>
+                                <a class="text-primary dropdown-item display-4" name="Italian" href="{% url 'category' 'Italian' %}">
+                                    Italian
+                                </a>
+                                <a class="text-primary dropdown-item display-4" name="Chinese" href="{% url 'category' 'Chinese' %}" aria-expanded="true">
+                                    Chinese
+                                </a>
+
                             </div>                        
                         </li>
                         <li class="nav-item">

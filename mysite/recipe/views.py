@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from .models import Ingredient, Recipe
+from .models import Ingredient, Recipe, Categories
 import datetime
 # Create your views here.
 
@@ -113,8 +113,10 @@ def view_recipes(request):
 
 def category(request, refName):
     print(refName)
+    categories = Categories.objects.all()
+    print(categories)
     recipes = Recipe.objects.filter(category=refName)
-    context = { 'recipes' : recipes, 'refName': refName }
+    context = { 'recipes' : recipes, 'refName': refName, 'categories': categories }
     return render(request, "recipe/category.html", context=context)
 
 
@@ -136,6 +138,7 @@ def add_ingredient(request):
         return redirect('add-recipe')
     return render(request, 'recipe/add_ingredient.html')
 
-def profile(request):
+def profile(request, user_id):
     print("abc")
+    context = { 'user_id': user_id}
     return render(request, 'profile.html')

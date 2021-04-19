@@ -2,18 +2,47 @@
 {% include 'header.html' %}
 <section class="features10 cid-sotbW4qMBf" id="features11-12">   
     <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <img src="#" class="d-block w-150 h-150" aslt="Profile Picture" />
+        <div class="row-6">           
+            <div class="col">
+                <div class="card-wrapper">
+                    <div class="card-box">
+                        <h4 class="card-title align-items-center mbr-fonts-style mb-0 display-2">
+                            <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+                        </h4>
+                        <div class="card-title display-7">
+                            {{ request.user.email }}
+                        </div>
+                        <div class="card-title display-7">
+                           Last login at  {{ request.user.last_login }}
+                        </div>
+                        <div class="card-title display-7">
+                            You joined on {{ request.user.date_joined }}
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="row-6 mt-4">
             <div class="col-9">
-                <div class="title">
-                    {{ request.user.first_name request.user.last_name}}
-                </div>
-                <div class="info">
-                    {{ request.user.email }}
+                <div class="card-wrapper" style="border: 1px solid #e2e2e2; padding: 10px;">
+                    <div class="card-box">
+                        <div class="card-title display-2" style="color:lawngreen;">
+                            <strong>Level 1</strong>
+                        </div>
+                        <div class="card-title display-1">
+                            16 Points
+                        </div>
+                        <div class="slider">
+                            <input style="width:100%; color: blue;" type="range" min="1" max="100" value="50" disabled>
+                        </div>
+                        <div class="display-1 points">
+                            <div style="float:left;">00</div>
+                            <div style="float:right;">50</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </section>
